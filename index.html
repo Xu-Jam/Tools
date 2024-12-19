@@ -33,8 +33,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             color: var(--text-color);
+            flex-direction: column; /* 允许在垂直方向上添加其他元素，如footer */
         }
 
         /* 容器样式，包括背景、阴影、圆角和动画效果 */
@@ -138,6 +139,22 @@
         .button-grid a:nth-child(6)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
         .button-grid a:nth-child(7)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/summary.png'); }
         .button-grid a:nth-child(8)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
+
+        /* Footer 样式 */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+
+        /* 可选：为 footer 添加细线分隔 */
+        footer::before {
+            content: '';
+            display: block;
+            width: 60%;
+            margin: 0 auto 15px;
+            border-bottom: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -153,6 +170,9 @@
             <a href="https://www.123865.com/s/V9qA-TonGh" target="_blank" rel="noopener">鲜食大豆区试汇总表</a>
             <a href="https://xu-jam.github.io/XSJP/" target="_blank" rel="noopener">鲜食大豆品种简评生成器</a>
         </div>
+        <footer>
+            <p>© 大豆组 效率工具 | By Jam</p>
+        </footer>
     </div>
 </body>
 </html>
