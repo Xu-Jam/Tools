@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>工具链接页面</title>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #333333;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .button-grid a {
+            display: inline-block;
+            padding: 15px 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px;
+        }
+        .button-grid a:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+        @media (max-width: 500px) {
+            .button-grid a {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>工具链接</h1>
+        <div class="button-grid">
+            <a href="#" target="_blank">副号生成器</a>
+            <a href="#" target="_blank">编号分组工具</a>
+            <a href="#" target="_blank">区试随机分布</a>
+            <a href="#" target="_blank">粒用大豆区试考种表转换</a>
+            <a href="#" target="_blank">粒用大豆区试汇总表</a>
+            <a href="#" target="_blank">粒用大豆品种简评生成器</a>
+            <a href="#" target="_blank">鲜食大豆区试汇总表</a>
+            <a href="https://xu-jam.github.io/Tools/" target="_blank">鲜食大豆品种简评生成器</a>
+        </div>
+    </div>
+</body>
+</html>
