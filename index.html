@@ -2,69 +2,156 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>工具链接页面</title>
+    <title>效率工具</title>
+    <!-- 引入 Google 字体以提升排版 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* 定义 CSS 变量，便于主题和颜色的统一管理 */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-hover: #45a049;
+            --background-color: #f0f4f8;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --font-family: 'Roboto', sans-serif;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --button-hover-transform: translateY(-3px);
+        }
+
+        /* 全局样式重置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 设置页面背景为渐变色，增加视觉层次 */
         body {
-            background-color: #f0f4f8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: var(--font-family);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            color: var(--text-color);
         }
+
+        /* 容器样式，包括背景、阴影、圆角和动画效果 */
         .container {
-            background-color: #ffffff;
+            background-color: var(--container-bg);
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 700px;
             width: 90%;
             text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
+
+        /* 标题样式，增加字体大小和颜色 */
         h1 {
-            margin-bottom: 30px;
-            color: #333333;
+            margin-bottom: 40px;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
         }
+
+        /* 按钮网格布局，确保响应式设计 */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
+
+        /* 按钮样式，包括颜色、圆角、阴影和过渡效果 */
         .button-grid a {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 15px 20px;
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
             font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        /* 按钮悬停效果，改变颜色、增加阴影和移动位置 */
         .button-grid a:hover {
-            background-color: #45a049;
-            transform: translateY(-3px);
+            background-color: var(--primary-hover);
+            transform: var(--button-hover-transform);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        @media (max-width: 500px) {
+
+        /* 按钮聚焦时的边框，提升可访问性 */
+        .button-grid a:focus {
+            outline: 2px solid var(--primary-hover);
+            outline-offset: 2px;
+        }
+
+        /* 响应式设计，当屏幕宽度较小时调整布局和字体大小 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 20px;
+            }
             .button-grid a {
                 font-size: 14px;
                 padding: 12px 16px;
             }
         }
+
+        /* 渐显动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 为按钮添加图标，可选部分 */
+        .button-grid a::before {
+            content: '';
+            display: inline-block;
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* 根据按钮位置分配不同图标，这里使用了 Icons8 的免费图标作为示例 */
+        .button-grid a:nth-child(1)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/generator.png'); }
+        .button-grid a:nth-child(2)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/group.png'); }
+        .button-grid a:nth-child(3)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/random.png'); }
+        .button-grid a:nth-child(4)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/convert.png'); }
+        .button-grid a:nth-child(5)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/summary.png'); }
+        .button-grid a:nth-child(6)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
+        .button-grid a:nth-child(7)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/summary.png'); }
+        .button-grid a:nth-child(8)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>工具链接</h1>
+        <h1>效率工具</h1>
         <div class="button-grid">
-            <a href="https://xu-jam.github.io/FH" target="_blank">副号生成器</a>
-            <a href="https://xu-jam.github.io/BHFZ" target="_blank">编号分组工具</a>
-            <a href="https://xu-jam.github.io/SJFB" target="_blank">区试随机分布</a>
-            <a href="https://www.123865.com/s/V9qA-VknGh" target="_blank">粒用大豆区试考种表转换</a>
-            <a href="https://www.123865.com/s/V9qA-jknGh" target="_blank">粒用大豆区试汇总表</a>
-            <a href="https://xu-jam.github.io/LYJP" target="_blank">粒用大豆品种简评生成器</a>
-            <a href="https://www.123865.com/s/V9qA-TonGh" target="_blank">鲜食大豆区试汇总表</a>
-            <a href="https://xu-jam.github.io/XSJP/" target="_blank">鲜食大豆品种简评生成器</a>
+            <a href="https://xu-jam.github.io/FH" target="_blank" rel="noopener">副号生成器</a>
+            <a href="https://xu-jam.github.io/BHFZ" target="_blank" rel="noopener">编号分组工具</a>
+            <a href="https://xu-jam.github.io/SJFB" target="_blank" rel="noopener">区试随机分布</a>
+            <a href="https://www.123865.com/s/V9qA-VknGh" target="_blank" rel="noopener">粒用大豆区试考种表转换</a>
+            <a href="https://www.123865.com/s/V9qA-jknGh" target="_blank" rel="noopener">粒用大豆区试汇总表</a>
+            <a href="https://xu-jam.github.io/LYJP" target="_blank" rel="noopener">粒用大豆品种简评生成器</a>
+            <a href="https://www.123865.com/s/V9qA-TonGh" target="_blank" rel="noopener">鲜食大豆区试汇总表</a>
+            <a href="https://xu-jam.github.io/XSJP/" target="_blank" rel="noopener">鲜食大豆品种简评生成器</a>
         </div>
     </div>
 </body>
