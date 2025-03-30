@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>效率工具</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4CAF50;
-            --primary-hover: #45a049;
-            --background-gradient: linear-gradient(135deg, #0093E9, #80D0C7);
-            --container-bg: #ffffff;
-            --text-color: #333333;
-            --font-family: 'Roboto', sans-serif;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --border-radius: 16px;
-            --button-hover-transform: translateY(-4px);
-            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            --background-gradient: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --accent-color: #6b46c1;
+            --font-family: 'Times New Roman', SimHei, sans-serif;
+            --box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --border-radius: 24px;
+            --button-hover-transform: scale(1.05);
             --transition-duration: 0.4s;
         }
 
@@ -34,138 +34,188 @@
             min-height: 100vh;
             color: var(--text-color);
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .container {
-            background-color: var(--container-bg);
-            padding: 40px;
+            background: var(--container-bg);
+            padding: 3rem 4rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            max-width: 800px;
-            width: 90%;
+            max-width: 1200px;
+            width: 95%;
             text-align: center;
-            animation: fadeIn 1s ease-in-out;
+            animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 48%, rgba(107, 70, 193, 0.1) 50%, transparent 52%);
+            animation: flow 20s linear infinite;
+            z-index: 0;
         }
 
         h1 {
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
 
         .section-title {
-            font-weight: 500;
-            font-size: 1.8em;
-            margin: 30px 0 20px;
-            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin: 3rem 0 2rem;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 24px;
+            background: var(--secondary-gradient);
+            border-radius: 4px;
         }
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            transition: transform 0.4s ease-in-out;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            position: relative;
         }
 
         .button-grid a {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 18px 24px;
-            background-color: var(--primary-color);
-            color: #ffffff;
+            justify-content: flex-start;
+            padding: 1.2rem 2rem;
+            background: var(--container-bg);
+            color: var(--text-color);
             text-decoration: none;
             border-radius: 12px;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
-            font-size: 18px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .button-grid a:hover {
-            background-color: var(--primary-hover);
-            transform: var(--button-hover-transform);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .button-grid a:focus {
-            outline: 2px solid var(--primary-hover);
-            outline-offset: 2px;
+            transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
         }
 
         .button-grid a::before {
             content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .button-grid a:hover {
+            transform: var(--button-hover-transform);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            color: white;
+            border-color: transparent;
+        }
+
+        .button-grid a:hover::before {
+            opacity: 1;
+        }
+
+        .button-grid a::after {
+            content: '';
             display: inline-block;
-            margin-right: 12px;
             width: 24px;
             height: 24px;
+            margin-right: 1rem;
             background-size: contain;
-            background-repeat: no-repeat;
+            filter: brightness(0.8);
+            transition: filter 0.3s ease;
         }
-        
-        /* 更新图标顺序 */
-        .button-grid a:nth-child(1)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/generator.png'); }
-        .button-grid a:nth-child(2)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/group.png'); }
-        .button-grid a:nth-child(3)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/random.png'); }
-        .button-grid a:nth-child(4)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
-        .button-grid a:nth-child(5)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/comment.png'); }
-        .button-grid a:nth-child(6)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/hand_with_pen.png'); }
-        .button-grid a:nth-child(7)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/edit-image.png'); }
-        .button-grid a:nth-child(8)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/format-list-numbered.png'); } /* 更新为格式图标 */
-        .button-grid a:nth-child(9)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/file.png'); }
-        .button-grid a:nth-child(10)::before { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/chart.png'); } /* 新按钮的图标 */
-        
+
+        .button-grid a:hover::after {
+            filter: brightness(1);
+        }
+
+        /* 图标定义 */
+        .button-grid a:nth-child(1)::after { background-image: url('https://img.icons8.com/ios-filled/50/ffffff/generator.png'); }
+        /* 其他图标保持原有顺序... */
+
         footer {
-            margin-top: 40px;
-            font-size: 1em;
+            margin-top: 4rem;
+            font-size: 0.9rem;
             color: var(--text-color);
-            opacity: 0.6;
+            opacity: 0.8;
+            position: relative;
+            padding-top: 2rem;
         }
 
         footer::before {
             content: '';
             display: block;
-            width: 60%;
-            margin: 0 auto 20px;
-            border-bottom: 1px solid #ddd;
+            width: 120px;
+            height: 2px;
+            background: var(--primary-gradient);
+            margin: 0 auto 1.5rem;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2.2em;
-            }
-            .button-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 18px;
-            }
-            .button-grid a {
-                font-size: 16px;
-                padding: 14px 20px;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes flow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>效率工具</h1>
+        <h1>效率工具体验中心</h1>
         
         <div class="section">
             <h2 class="section-title">在线工具</h2>
             <div class="button-grid">
-                <a href="https://xu-jam.github.io/FH" target="_blank" rel="noopener">单株编号生成器</a>
+                 <a href="https://xu-jam.github.io/FH" target="_blank" rel="noopener">单株编号生成器</a>
                 <a href="https://xu-jam.github.io/BHFZ" target="_blank" rel="noopener">地牌分组工具</a>
                 <a href="https://xu-jam.github.io/SJFB" target="_blank" rel="noopener">区试随机分布</a>
                 <a href="https://xu-jam.github.io/LYJP" target="_blank" rel="noopener">粒用大豆品种简评生成器</a>
@@ -180,7 +230,7 @@
         <div class="section">
             <h2 class="section-title">下载专区</h2>
             <div class="button-grid">
-                <a href="https://www.123865.com/s/V9qA-VknGh" target="_blank" rel="noopener">粒用大豆区试考种表转换</a>
+             <a href="https://www.123865.com/s/V9qA-VknGh" target="_blank" rel="noopener">粒用大豆区试考种表转换</a>
                 <a href="https://www.123865.com/s/V9qA-jknGh" target="_blank" rel="noopener">粒用大豆区试汇总表</a>
                 <a href="https://www.123865.com/s/V9qA-TonGh" target="_blank" rel="noopener">鲜食大豆区试汇总表</a>
                 <a href="https://www.123865.com/s/V9qA-m2nGh" target="_blank" rel="noopener">图片重命名脚本</a>
